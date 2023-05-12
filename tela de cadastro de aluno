@@ -1,0 +1,55 @@
+import tkinter as tk
+import sqlite3
+
+# Conectar ao banco de dados
+conn = sqlite3.connect('escola.db')
+c = conn.cursor()
+
+# Criar tabela de alunos (exemplo)
+c.execute('''CREATE TABLE IF NOT EXISTS alunos (
+                id INTEGER PRIMARY KEY,
+                nome TEXT NOT NULL,
+                idade INTEGER NOT NULL,
+                turma TEXT NOT NULL
+            )''')
+conn.commit()
+
+# Função para adicionar aluno ao banco de dados
+def adicionar_aluno():
+    nome = nome_entry.get()
+    idade = int(idade_entry.get())
+    turma = turma_entry.get()
+    c.execute("INSERT INTO alunos (nome, idade, turma) VALUES (?, ?, ?)", (nome, idade, turma))
+    conn.commit()
+    # Limpar os campos de entrada
+    nome_entry.delete(0, tk.END)
+    idade_entry.delete(0, tk.END)
+    turma_entry.delete(0, tk.END)
+
+# Criar a janela principal
+janela = tk.Tk()
+janela.title("Aplicativo Escola")
+
+# Criar os widgets da tela
+nome_label = tk.Label(janela, text="Nome:")
+nome_entry = tk.Entry(janela)
+idade_label = tk.Label(janela, text="Idade:")
+idade_entry = tk.Entry(janela)
+turma_label = tk.Label(janela, text="Turma:")
+turma_entry = tk.Entry(janela)
+adicionar_button = tk.Button(janela, text="Adicionar Aluno", command=adicionar_aluno)
+
+# Posicionar os widgets na tela
+nome_label.pack()
+nome_entry.pack()
+idade_label.pack()
+idade_entry.pack()
+turma_label.pack()
+turma_entry.pack()
+adicionar_button.pack()
+
+# Iniciar o loop de eventos
+janela.mainloop()
+
+# Fechar a conexão com o banco de dados ao fechar a janela
+conn.close()
