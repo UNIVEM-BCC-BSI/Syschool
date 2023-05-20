@@ -15,10 +15,11 @@ try:
         CREATE TABLE IF NOT EXISTS Alunos (
             id_aluno INTEGER PRIMARY KEY AUTOINCREMENT,
             Nome TEXT,
-            Educação Especial TEXT,
+            Educacao_especial TEXT,
             Turma TEXT,
-            Nota do bimestre REAL,
-            Professor TEXT
+            Notas REAL,
+            Professor TEXT,
+            Anotacoes TEXT
         )""")
         print('Tabela Alunos criada com sucesso.')
 except sqlite3.Error as i:
