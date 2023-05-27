@@ -98,7 +98,7 @@ entrada_anot.place(x=10,y=278)
 b_inserir = Button(faixa2, text='Inserir', command= inserir, relief='raised', font=('verdana', 8, 'bold'), bg=cor3, fg=cor1, overrelief='ridge')
 b_inserir.place(x=10,y=330)
 
-b_atualizar = Button(faixa2, text='Atualizar', relief='raised', font=('verdana', 8, 'bold'), bg=cor4, fg=cor1, overrelief='ridge')
+b_atualizar = Button(faixa2, text='Alterar', relief='raised', font=('verdana', 8, 'bold'), bg=cor4, fg=cor1, overrelief='ridge')
 b_atualizar.place(x=80,y=330)
 
 b_del = Button(faixa2, text='Deletar', relief='raised', font=('verdana', 8, 'bold'), bg=cor2, fg=cor1, overrelief='ridge')
