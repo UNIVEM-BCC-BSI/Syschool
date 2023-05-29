@@ -1,0 +1,37 @@
+import sqlite3
+
+conexao = sqlite3.connect('escola.db')
+
+# inserir dados
+def inserir_dados(i):
+    with conexao:
+        cursor = conexao.cursor()
+        funcao = 'INSERT INTO Alunos (Nome, Educacao_especial, Turma, Notas, Professor, Anotacoes) VALUES (?, ?, ?, ?, ?, ?)'
+        cursor.execute(funcao, i)
+
+# ver dados da tabela
+def ver_dados():
+    lista = []
+    with conexao:
+        cursor = conexao.cursor()
+        funcao = 'SELECT * FROM Alunos'
+        cursor.execute(funcao)
+        dados = cursor.fetchall()
+
+        for i in dados:
+            lista.append(i)
+        return lista
+
+# atualizar dados
+def atualizar_dados(id_aluno, nome):
+    with conexao:
+        cursor = conexao.cursor()
+        funcao = 'UPDATE Alunos SET Nome=? WHERE id_aluno=?'
+        cursor.execute(funcao, (nome, id_aluno))
+
+# deletar dados
+def deletar_dados(id_aluno):
+    with conexao:
+        cursor = conexao.cursor()
+        funcao = 'DELETE FROM Alunos WHERE id_aluno=?'
+        cursor.execute(funcao, (id_aluno,))
